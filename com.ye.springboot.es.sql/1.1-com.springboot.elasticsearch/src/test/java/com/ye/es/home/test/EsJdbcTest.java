@@ -22,7 +22,6 @@ public class EsJdbcTest {
         properties.put("url", "jdbc:elasticsearch://192.168.3.220:9300/hb-eslog");
         DruidDataSource dds = (DruidDataSource) ElasticSearchDruidDataSourceFactory.createDataSource(properties);
         Connection connection = dds.getConnection();
-//        PreparedStatement ps = connection.prepareStatement("SELECT  gender,lastname,age from  " + TestsConstants.TEST_INDEX + " where lastname='Heath'");
         PreparedStatement ps = connection.prepareStatement("SELECT * FROM hb.dev.bt.p01-2017-11-06");
         ResultSet resultSet = ps.executeQuery();
         List<String> result = new ArrayList<String>();
