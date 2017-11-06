@@ -1,0 +1,56 @@
+*.class
+
+.mtj.tmp/
+log/
+
+*.jar
+*.war
+*.ear
+
+hs_err_pid*
+
+*.iml
+.idea
+*.log
+
+data/
+logs/
+work/
+target/
+out/
+
+node_modules/
+
+# maven ignore
+target/
+*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
+
+# eclipse ignore
+.settings/
+.project
+.classpath
+
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws
+
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+*.rdp
+# system ignore
+.DS_Store
+Thumbs.db
+package-install/
+install-package/
+*.lock
+*.cache
