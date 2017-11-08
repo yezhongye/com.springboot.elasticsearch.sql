@@ -56,7 +56,8 @@ public class ElasticSearchDruidPooledPreparedStatement extends DruidPooledPrepar
             DruidPooledResultSet poolableResultSet = new DruidPooledResultSet(this, rs);
             addResultSetTrace(poolableResultSet);
 
-            return poolableResultSet;
+//            return poolableResultSet; 源代码修改
+            return rs;
         } catch (Throwable t) {
             throw checkException(t);
         } finally {

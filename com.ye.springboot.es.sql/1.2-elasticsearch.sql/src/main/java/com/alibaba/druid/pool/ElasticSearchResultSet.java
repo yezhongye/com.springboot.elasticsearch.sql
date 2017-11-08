@@ -132,7 +132,8 @@ public class ElasticSearchResultSet implements ResultSet {
 
     @Override
     public String getString(String columnLabel) throws SQLException {
-        return (String) current.get(headers.indexOf(columnLabel));
+//        return (String) current.get(headers.indexOf(columnLabel)); //源代码修改，防止类型转换错误
+        return String.valueOf(current.get(headers.indexOf(columnLabel)));
     }
 
     @Override
@@ -989,5 +990,14 @@ public class ElasticSearchResultSet implements ResultSet {
     @Override
     public boolean isWrapperFor(Class<?> iface) throws SQLException {
         return false;
+    }
+
+    //源代码修改，增加获取headers方法
+    public List<String> getHeaders() {
+        return headers;
+    }
+
+    public void setHeaders(List<String> headers) {
+        this.headers = headers;
     }
 }
