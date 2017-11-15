@@ -47,16 +47,16 @@ public class EsHikariCPTest {
         return ds.getConnection();
     }
 
-//    @Test
+    @Test
     public void myHikariCPTest() throws SQLException {
        Connection con = EsHikariCPTest.getConn();
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM tb_order");
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM tb_order where o_policyholder_name='王伟'");
 //        PreparedStatement ps = con.prepareStatement("SELECT * FROM indexanimation");
         ResultSet rs = ps.executeQuery();
-        System.out.println(resultSetToJson(rs));
+        System.out.println("HikariCP Query:"+resultSetToJson(rs));
         con.close();
     }
-    @Test
+//    @Test
     public void myDruidTest() throws Exception {
         Properties properties = new Properties();
         properties.put("url","jdbc:mysql://localhost:3306/db.order?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
@@ -67,9 +67,9 @@ public class EsHikariCPTest {
 //        DataSource dds= DruidDataSourceFactory.createDataSource(properties);
         DruidDataSource dds = (DruidDataSource)DruidDataSourceFactory.createDataSource(properties);
         Connection conn=dds.getConnection();
-        PreparedStatement st=conn.prepareStatement("SELECT * FROM tb_order limit 10");
+        PreparedStatement st=conn.prepareStatement("SELECT * FROM tb_order limit 3");
         ResultSet result=st.executeQuery();
-        System.out.println(resultSetToJson(result));
+        System.out.println("Druid Query:"+resultSetToJson(result));
         result.close();
         st.close();
         conn.close();
@@ -80,7 +80,7 @@ public class EsHikariCPTest {
         JSONArray array = new JSONArray();
         // 获取列数
         ResultSetMetaData metaData = rs.getMetaData();
-        System.out.println(JSON.toJSON(metaData));
+        System.out.println("metaData:"+JSON.toJSON(metaData));
         int columnCount = metaData.getColumnCount();
         // 遍历ResultSet中的每条数据
         while (rs.next()) {

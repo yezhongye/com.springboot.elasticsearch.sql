@@ -21,12 +21,12 @@ public class EsJdbcTest {
     @Test
     public void testJDBC() throws Exception {
         Properties properties = new Properties();
-        properties.put("url", "jdbc:elasticsearch://192.168.3.220:9300/hb-eslog");
-//        properties.put("url", "jdbc:elasticsearch://127.0.0.1:9300/elasticsearch");
+//        properties.put("url", "jdbc:elasticsearch://192.168.3.220:9300/hb-eslog");
+        properties.put("url", "jdbc:elasticsearch://127.0.0.1:9300/elasticsearch");
         ElasticSearchDruidDataSource dds = (ElasticSearchDruidDataSource) ElasticSearchDruidDataSourceFactory.createDataSource(properties);
         ElasticSearchDruidPooledConnection connection = (ElasticSearchDruidPooledConnection)dds.getConnection();
-        PreparedStatement ps = connection.prepareStatement("SELECT * FROM hb.dev.bt.p01-2017-11-06");
-//        ElasticSearchDruidPooledPreparedStatement ps = (ElasticSearchDruidPooledPreparedStatement)connection.prepareStatement("SELECT * FROM indexanimation,indexmedicines");
+//        PreparedStatement ps = connection.prepareStatement("SELECT * FROM hb.dev.bt.p01-2017-11-06");
+        ElasticSearchDruidPooledPreparedStatement ps = (ElasticSearchDruidPooledPreparedStatement)connection.prepareStatement("SELECT * FROM indexanimation");
         ElasticSearchResultSet resultSet = (ElasticSearchResultSet)ps.executeQuery();
         System.out.println(resultSetToJson(resultSet));
 
